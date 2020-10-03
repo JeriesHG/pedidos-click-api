@@ -1,0 +1,1359 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="pedidoclickModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="t_Categoria">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdCliente" Type="int" />
+          <Property Name="IdTienda" Type="int" />
+          <Property Name="Categoria" Type="varchar" MaxLength="255" />
+          <Property Name="Imagen" Type="varchar(max)" />
+          <Property Name="IdUsuarioCreo" Type="int" />
+          <Property Name="FechaCreo" Type="datetime" />
+          <Property Name="IdUsuarioBorro" Type="int" />
+          <Property Name="Borrado" Type="bit" />
+          <Property Name="FechaBorrado" Type="datetime" />
+        </EntityType>
+        <EntityType Name="t_CategoriaTienda">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdCliente" Type="int" />
+          <Property Name="CategoriaTienda" Type="varchar" MaxLength="255" />
+          <Property Name="Activo" Type="bit" />
+          <Property Name="Imagen" Type="varchar(max)" />
+          <Property Name="FechaCreo" Type="datetime" />
+          <Property Name="IdUsuarioCreo" Type="int" />
+          <Property Name="FechaBorro" Type="datetime" />
+          <Property Name="IdUsuarioBorro" Type="int" />
+          <Property Name="Borrado" Type="bit" />
+        </EntityType>
+        <EntityType Name="t_Cliente">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="255" />
+          <Property Name="Logo" Type="varchar(max)" />
+          <Property Name="ValidoHasta" Type="date" />
+          <Property Name="Valido" Type="bit" />
+          <Property Name="Borrado" Type="bit" />
+        </EntityType>
+        <EntityType Name="t_Mensajes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="255" />
+          <Property Name="Correo" Type="varchar" MaxLength="255" />
+          <Property Name="Telefono" Type="varchar" MaxLength="255" />
+          <Property Name="Empresa" Type="varchar" MaxLength="255" />
+          <Property Name="Mensaje" Type="varchar" MaxLength="1000" />
+          <Property Name="FechaCreacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="t_Orden">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdOrdenEstado" Type="int" />
+          <Property Name="IdCliente" Type="int" />
+          <Property Name="IdTienda" Type="int" />
+          <Property Name="IdAsignado" Type="int" />
+          <Property Name="Nombre" Type="varchar" MaxLength="255" />
+          <Property Name="Telefono" Type="varchar" MaxLength="255" />
+          <Property Name="CorreoElectronico" Type="varchar" MaxLength="255" />
+          <Property Name="Identidad" Type="varchar" MaxLength="255" />
+          <Property Name="Calle" Type="varchar" MaxLength="255" />
+          <Property Name="Avenida" Type="varchar" MaxLength="255" />
+          <Property Name="Colonia" Type="varchar" MaxLength="255" />
+          <Property Name="Ciudad" Type="varchar" MaxLength="255" />
+          <Property Name="Comentario" Type="varchar" MaxLength="1000" />
+          <Property Name="FechaCreo" Type="datetime" />
+          <Property Name="Lat" Type="varchar" MaxLength="50" />
+          <Property Name="Long" Type="varchar" MaxLength="50" />
+          <Property Name="IdZona" Type="int" />
+        </EntityType>
+        <EntityType Name="t_OrdenDetalle">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdOrden" Type="int" />
+          <Property Name="IdProducto" Type="int" />
+          <Property Name="Cantidad" Type="int" />
+          <Property Name="Precio" Type="decimal" Precision="16" Scale="4" />
+          <Property Name="FechaCreo" Type="datetime" />
+          <Property Name="FechaBorro" Type="datetime" />
+          <Property Name="IdUsuarioBorro" Type="int" />
+          <Property Name="Borrado" Type="bit" />
+        </EntityType>
+        <EntityType Name="t_OrdenEstado">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Estado" Type="varchar" MaxLength="50" />
+          <Property Name="FechaCreo" Type="datetime" />
+        </EntityType>
+        <EntityType Name="t_Producto">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdCategoria" Type="int" />
+          <Property Name="IdTienda" Type="int" />
+          <Property Name="Producto" Type="varchar" MaxLength="255" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="500" />
+          <Property Name="Precio" Type="decimal" Precision="16" Scale="4" />
+          <Property Name="Costo" Type="decimal" Precision="16" Scale="4" />
+          <Property Name="Activo" Type="bit" />
+          <Property Name="Imagen" Type="varchar(max)" />
+          <Property Name="FechaCreo" Type="datetime" />
+          <Property Name="IdUsuarioCreo" Type="int" />
+          <Property Name="FechaBorro" Type="datetime" />
+          <Property Name="IdUsuarioBorro" Type="int" />
+          <Property Name="Borrado" Type="bit" />
+        </EntityType>
+        <EntityType Name="t_Rol">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Rol" Type="varchar" MaxLength="255" />
+          <Property Name="Borrado" Type="bit" />
+        </EntityType>
+        <EntityType Name="t_Sesion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="FechaCreo" Type="datetime" />
+          <Property Name="FechaExpira" Type="datetime" />
+        </EntityType>
+        <EntityType Name="t_Tienda">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdCliente" Type="int" />
+          <Property Name="IdCategoriaTienda" Type="int" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" />
+          <Property Name="Logo" Type="varchar(max)" />
+          <Property Name="Banner" Type="varchar" MaxLength="255" />
+          <Property Name="Borrado" Type="bit" />
+          <Property Name="Observaciones" Type="varchar(max)" />
+          <Property Name="Paginaweb" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="t_Usuario">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClienteId" Type="int" />
+          <Property Name="RolId" Type="int" />
+          <Property Name="Nombre" Type="varchar" MaxLength="255" />
+          <Property Name="Apellido" Type="varchar" MaxLength="255" />
+          <Property Name="Usuario" Type="varchar" MaxLength="100" />
+          <Property Name="Contrasena" Type="varchar" MaxLength="255" />
+          <Property Name="Correo" Type="varchar" MaxLength="255" />
+          <Property Name="CreadoFecha" Type="datetime" />
+          <Property Name="Borrado" Type="bit" />
+          <Property Name="BorradoFecha" Type="datetime" />
+        </EntityType>
+        <Association Name="FK_t_Categoria_t_Cliente">
+          <End Role="t_Cliente" Type="Self.t_Cliente" Multiplicity="0..1" />
+          <End Role="t_Categoria" Type="Self.t_Categoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_Cliente">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="t_Categoria">
+              <PropertyRef Name="IdCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_Categoria_t_Tienda">
+          <End Role="t_Tienda" Type="Self.t_Tienda" Multiplicity="0..1" />
+          <End Role="t_Categoria" Type="Self.t_Categoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_Tienda">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="t_Categoria">
+              <PropertyRef Name="IdTienda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_Categoria_t_Usuario">
+          <End Role="t_Usuario" Type="Self.t_Usuario" Multiplicity="0..1" />
+          <End Role="t_Categoria" Type="Self.t_Categoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_Usuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="t_Categoria">
+              <PropertyRef Name="IdUsuarioCreo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_Categoria_t_Usuario1">
+          <End Role="t_Usuario" Type="Self.t_Usuario" Multiplicity="0..1" />
+          <End Role="t_Categoria" Type="Self.t_Categoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_Usuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="t_Categoria">
+              <PropertyRef Name="IdUsuarioBorro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_CategoriaTienda_t_Cliente">
+          <End Role="t_Cliente" Type="Self.t_Cliente" Multiplicity="0..1" />
+          <End Role="t_CategoriaTienda" Type="Self.t_CategoriaTienda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_Cliente">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="t_CategoriaTienda">
+              <PropertyRef Name="IdCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_CategoriaTienda_t_Usuario">
+          <End Role="t_Usuario" Type="Self.t_Usuario" Multiplicity="0..1" />
+          <End Role="t_CategoriaTienda" Type="Self.t_CategoriaTienda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_Usuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="t_CategoriaTienda">
+              <PropertyRef Name="IdUsuarioCreo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_CategoriaTienda_t_Usuario1">
+          <End Role="t_Usuario" Type="Self.t_Usuario" Multiplicity="0..1" />
+          <End Role="t_CategoriaTienda" Type="Self.t_CategoriaTienda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_Usuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="t_CategoriaTienda">
+              <PropertyRef Name="IdUsuarioBorro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_Orden_t_Cliente">
+          <End Role="t_Cliente" Type="Self.t_Cliente" Multiplicity="0..1" />
+          <End Role="t_Orden" Type="Self.t_Orden" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_Cliente">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="t_Orden">
+              <PropertyRef Name="IdCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_Orden_t_OrdenEstado">
+          <End Role="t_OrdenEstado" Type="Self.t_OrdenEstado" Multiplicity="0..1" />
+          <End Role="t_Orden" Type="Self.t_Orden" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_OrdenEstado">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="t_Orden">
+              <PropertyRef Name="IdOrdenEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_Orden_t_Tienda">
+          <End Role="t_Tienda" Type="Self.t_Tienda" Multiplicity="0..1" />
+          <End Role="t_Orden" Type="Self.t_Orden" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_Tienda">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="t_Orden">
+              <PropertyRef Name="IdTienda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_Orden_t_Usuario">
+          <End Role="t_Usuario" Type="Self.t_Usuario" Multiplicity="0..1" />
+          <End Role="t_Orden" Type="Self.t_Orden" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_Usuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="t_Orden">
+              <PropertyRef Name="IdAsignado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_OrdenDetalle_t_Orden">
+          <End Role="t_Orden" Type="Self.t_Orden" Multiplicity="0..1" />
+          <End Role="t_OrdenDetalle" Type="Self.t_OrdenDetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_Orden">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="t_OrdenDetalle">
+              <PropertyRef Name="IdOrden" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_OrdenDetalle_t_Producto">
+          <End Role="t_Producto" Type="Self.t_Producto" Multiplicity="0..1" />
+          <End Role="t_OrdenDetalle" Type="Self.t_OrdenDetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_Producto">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="t_OrdenDetalle">
+              <PropertyRef Name="IdProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_OrdenDetalle_t_Usuario">
+          <End Role="t_Usuario" Type="Self.t_Usuario" Multiplicity="0..1" />
+          <End Role="t_OrdenDetalle" Type="Self.t_OrdenDetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_Usuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="t_OrdenDetalle">
+              <PropertyRef Name="IdUsuarioBorro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_Producto_t_Categoria">
+          <End Role="t_Categoria" Type="Self.t_Categoria" Multiplicity="0..1" />
+          <End Role="t_Producto" Type="Self.t_Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_Categoria">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="t_Producto">
+              <PropertyRef Name="IdCategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_Producto_t_Tienda">
+          <End Role="t_Tienda" Type="Self.t_Tienda" Multiplicity="0..1" />
+          <End Role="t_Producto" Type="Self.t_Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_Tienda">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="t_Producto">
+              <PropertyRef Name="IdTienda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_Producto_t_Usuario">
+          <End Role="t_Usuario" Type="Self.t_Usuario" Multiplicity="0..1" />
+          <End Role="t_Producto" Type="Self.t_Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_Usuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="t_Producto">
+              <PropertyRef Name="IdUsuarioCreo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_Producto_t_Usuario1">
+          <End Role="t_Usuario" Type="Self.t_Usuario" Multiplicity="0..1" />
+          <End Role="t_Producto" Type="Self.t_Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_Usuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="t_Producto">
+              <PropertyRef Name="IdUsuarioBorro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_Sesion_t_Usuario">
+          <End Role="t_Usuario" Type="Self.t_Usuario" Multiplicity="0..1" />
+          <End Role="t_Sesion" Type="Self.t_Sesion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_Usuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="t_Sesion">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_Tienda_t_CategoriaTienda">
+          <End Role="t_CategoriaTienda" Type="Self.t_CategoriaTienda" Multiplicity="0..1" />
+          <End Role="t_Tienda" Type="Self.t_Tienda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_CategoriaTienda">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="t_Tienda">
+              <PropertyRef Name="IdCategoriaTienda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_Usuario_t_Cliente">
+          <End Role="t_Cliente" Type="Self.t_Cliente" Multiplicity="0..1" />
+          <End Role="t_Usuario" Type="Self.t_Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_Cliente">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="t_Usuario">
+              <PropertyRef Name="ClienteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_Usuario_t_Rol">
+          <End Role="t_Rol" Type="Self.t_Rol" Multiplicity="0..1" />
+          <End Role="t_Usuario" Type="Self.t_Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_Rol">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="t_Usuario">
+              <PropertyRef Name="RolId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="SP_Categoria_Crear" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="sesionId" Type="varchar" Mode="In" />
+          <Parameter Name="categoria" Type="varchar" Mode="In" />
+          <Parameter Name="tiendaId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_Categoria_List" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="clientId" Type="int" Mode="In" />
+          <Parameter Name="tiendaId" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="pedidoclickModelStoreContainer">
+          <EntitySet Name="t_Categoria" EntityType="Self.t_Categoria" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_CategoriaTienda" EntityType="Self.t_CategoriaTienda" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_Cliente" EntityType="Self.t_Cliente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_Mensajes" EntityType="Self.t_Mensajes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_Orden" EntityType="Self.t_Orden" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_OrdenDetalle" EntityType="Self.t_OrdenDetalle" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_OrdenEstado" EntityType="Self.t_OrdenEstado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_Producto" EntityType="Self.t_Producto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_Rol" EntityType="Self.t_Rol" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_Sesion" EntityType="Self.t_Sesion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_Tienda" EntityType="Self.t_Tienda" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_Usuario" EntityType="Self.t_Usuario" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_t_Categoria_t_Cliente" Association="Self.FK_t_Categoria_t_Cliente">
+            <End Role="t_Cliente" EntitySet="t_Cliente" />
+            <End Role="t_Categoria" EntitySet="t_Categoria" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_Categoria_t_Tienda" Association="Self.FK_t_Categoria_t_Tienda">
+            <End Role="t_Tienda" EntitySet="t_Tienda" />
+            <End Role="t_Categoria" EntitySet="t_Categoria" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_Categoria_t_Usuario" Association="Self.FK_t_Categoria_t_Usuario">
+            <End Role="t_Usuario" EntitySet="t_Usuario" />
+            <End Role="t_Categoria" EntitySet="t_Categoria" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_Categoria_t_Usuario1" Association="Self.FK_t_Categoria_t_Usuario1">
+            <End Role="t_Usuario" EntitySet="t_Usuario" />
+            <End Role="t_Categoria" EntitySet="t_Categoria" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_CategoriaTienda_t_Cliente" Association="Self.FK_t_CategoriaTienda_t_Cliente">
+            <End Role="t_Cliente" EntitySet="t_Cliente" />
+            <End Role="t_CategoriaTienda" EntitySet="t_CategoriaTienda" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_CategoriaTienda_t_Usuario" Association="Self.FK_t_CategoriaTienda_t_Usuario">
+            <End Role="t_Usuario" EntitySet="t_Usuario" />
+            <End Role="t_CategoriaTienda" EntitySet="t_CategoriaTienda" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_CategoriaTienda_t_Usuario1" Association="Self.FK_t_CategoriaTienda_t_Usuario1">
+            <End Role="t_Usuario" EntitySet="t_Usuario" />
+            <End Role="t_CategoriaTienda" EntitySet="t_CategoriaTienda" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_Orden_t_Cliente" Association="Self.FK_t_Orden_t_Cliente">
+            <End Role="t_Cliente" EntitySet="t_Cliente" />
+            <End Role="t_Orden" EntitySet="t_Orden" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_Orden_t_OrdenEstado" Association="Self.FK_t_Orden_t_OrdenEstado">
+            <End Role="t_OrdenEstado" EntitySet="t_OrdenEstado" />
+            <End Role="t_Orden" EntitySet="t_Orden" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_Orden_t_Tienda" Association="Self.FK_t_Orden_t_Tienda">
+            <End Role="t_Tienda" EntitySet="t_Tienda" />
+            <End Role="t_Orden" EntitySet="t_Orden" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_Orden_t_Usuario" Association="Self.FK_t_Orden_t_Usuario">
+            <End Role="t_Usuario" EntitySet="t_Usuario" />
+            <End Role="t_Orden" EntitySet="t_Orden" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_OrdenDetalle_t_Orden" Association="Self.FK_t_OrdenDetalle_t_Orden">
+            <End Role="t_Orden" EntitySet="t_Orden" />
+            <End Role="t_OrdenDetalle" EntitySet="t_OrdenDetalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_OrdenDetalle_t_Producto" Association="Self.FK_t_OrdenDetalle_t_Producto">
+            <End Role="t_Producto" EntitySet="t_Producto" />
+            <End Role="t_OrdenDetalle" EntitySet="t_OrdenDetalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_OrdenDetalle_t_Usuario" Association="Self.FK_t_OrdenDetalle_t_Usuario">
+            <End Role="t_Usuario" EntitySet="t_Usuario" />
+            <End Role="t_OrdenDetalle" EntitySet="t_OrdenDetalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_Producto_t_Categoria" Association="Self.FK_t_Producto_t_Categoria">
+            <End Role="t_Categoria" EntitySet="t_Categoria" />
+            <End Role="t_Producto" EntitySet="t_Producto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_Producto_t_Tienda" Association="Self.FK_t_Producto_t_Tienda">
+            <End Role="t_Tienda" EntitySet="t_Tienda" />
+            <End Role="t_Producto" EntitySet="t_Producto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_Producto_t_Usuario" Association="Self.FK_t_Producto_t_Usuario">
+            <End Role="t_Usuario" EntitySet="t_Usuario" />
+            <End Role="t_Producto" EntitySet="t_Producto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_Producto_t_Usuario1" Association="Self.FK_t_Producto_t_Usuario1">
+            <End Role="t_Usuario" EntitySet="t_Usuario" />
+            <End Role="t_Producto" EntitySet="t_Producto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_Sesion_t_Usuario" Association="Self.FK_t_Sesion_t_Usuario">
+            <End Role="t_Usuario" EntitySet="t_Usuario" />
+            <End Role="t_Sesion" EntitySet="t_Sesion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_Tienda_t_CategoriaTienda" Association="Self.FK_t_Tienda_t_CategoriaTienda">
+            <End Role="t_CategoriaTienda" EntitySet="t_CategoriaTienda" />
+            <End Role="t_Tienda" EntitySet="t_Tienda" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_Usuario_t_Cliente" Association="Self.FK_t_Usuario_t_Cliente">
+            <End Role="t_Cliente" EntitySet="t_Cliente" />
+            <End Role="t_Usuario" EntitySet="t_Usuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_Usuario_t_Rol" Association="Self.FK_t_Usuario_t_Rol">
+            <End Role="t_Rol" EntitySet="t_Rol" />
+            <End Role="t_Usuario" EntitySet="t_Usuario" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="pedidoclickModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="t_Mensajes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Correo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Telefono" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Empresa" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Mensaje" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="FechaCreacion" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityContainer Name="pedidoclick" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="t_Mensajes" EntityType="Self.t_Mensajes" />
+          <EntitySet Name="t_Categoria" EntityType="pedidoclickModel.t_Categoria" />
+          <EntitySet Name="t_Cliente" EntityType="pedidoclickModel.t_Cliente" />
+          <EntitySet Name="t_Producto" EntityType="pedidoclickModel.t_Producto" />
+          <EntitySet Name="t_Rol" EntityType="pedidoclickModel.t_Rol" />
+          <EntitySet Name="t_Sesion" EntityType="pedidoclickModel.t_Sesion" />
+          <EntitySet Name="t_Usuario" EntityType="pedidoclickModel.t_Usuario" />
+          <AssociationSet Name="FK_t_Categoria_t_Cliente" Association="pedidoclickModel.FK_t_Categoria_t_Cliente">
+            <End Role="t_Cliente" EntitySet="t_Cliente" />
+            <End Role="t_Categoria" EntitySet="t_Categoria" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_Categoria_t_Usuario" Association="pedidoclickModel.FK_t_Categoria_t_Usuario">
+            <End Role="t_Usuario" EntitySet="t_Usuario" />
+            <End Role="t_Categoria" EntitySet="t_Categoria" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_Categoria_t_Usuario1" Association="pedidoclickModel.FK_t_Categoria_t_Usuario1">
+            <End Role="t_Usuario" EntitySet="t_Usuario" />
+            <End Role="t_Categoria" EntitySet="t_Categoria" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_Producto_t_Categoria" Association="pedidoclickModel.FK_t_Producto_t_Categoria">
+            <End Role="t_Categoria" EntitySet="t_Categoria" />
+            <End Role="t_Producto" EntitySet="t_Producto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_Usuario_t_Cliente" Association="pedidoclickModel.FK_t_Usuario_t_Cliente">
+            <End Role="t_Cliente" EntitySet="t_Cliente" />
+            <End Role="t_Usuario" EntitySet="t_Usuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_Producto_t_Usuario" Association="pedidoclickModel.FK_t_Producto_t_Usuario">
+            <End Role="t_Usuario" EntitySet="t_Usuario" />
+            <End Role="t_Producto" EntitySet="t_Producto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_Producto_t_Usuario1" Association="pedidoclickModel.FK_t_Producto_t_Usuario1">
+            <End Role="t_Usuario" EntitySet="t_Usuario" />
+            <End Role="t_Producto" EntitySet="t_Producto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_Usuario_t_Rol" Association="pedidoclickModel.FK_t_Usuario_t_Rol">
+            <End Role="t_Rol" EntitySet="t_Rol" />
+            <End Role="t_Usuario" EntitySet="t_Usuario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_Sesion_t_Usuario" Association="pedidoclickModel.FK_t_Sesion_t_Usuario">
+            <End Role="t_Usuario" EntitySet="t_Usuario" />
+            <End Role="t_Sesion" EntitySet="t_Sesion" />
+          </AssociationSet>
+          <FunctionImport Name="SP_Categoria_Crear">
+            <Parameter Name="sesionId" Mode="In" Type="String" />
+            <Parameter Name="categoria" Mode="In" Type="String" />
+            <Parameter Name="tiendaId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="t_Orden" EntityType="pedidoclickModel.t_Orden" />
+          <EntitySet Name="t_OrdenDetalle" EntityType="pedidoclickModel.t_OrdenDetalle" />
+          <EntitySet Name="t_OrdenEstado" EntityType="pedidoclickModel.t_OrdenEstado" />
+          <AssociationSet Name="FK_t_Orden_t_OrdenEstado" Association="pedidoclickModel.FK_t_Orden_t_OrdenEstado">
+            <End Role="t_OrdenEstado" EntitySet="t_OrdenEstado" />
+            <End Role="t_Orden" EntitySet="t_Orden" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_OrdenDetalle_t_Orden" Association="pedidoclickModel.FK_t_OrdenDetalle_t_Orden">
+            <End Role="t_Orden" EntitySet="t_Orden" />
+            <End Role="t_OrdenDetalle" EntitySet="t_OrdenDetalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_OrdenDetalle_t_Producto" Association="pedidoclickModel.FK_t_OrdenDetalle_t_Producto">
+            <End Role="t_Producto" EntitySet="t_Producto" />
+            <End Role="t_OrdenDetalle" EntitySet="t_OrdenDetalle" />
+          </AssociationSet>
+          <FunctionImport Name="SP_Categoria_List" ReturnType="Collection(pedidoclickModel.SP_Categoria_List_Result)">
+            <Parameter Name="clientId" Mode="In" Type="Int32" />
+            <Parameter Name="tiendaId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <AssociationSet Name="FK_t_Orden_t_Cliente" Association="pedidoclickModel.FK_t_Orden_t_Cliente">
+            <End Role="t_Cliente" EntitySet="t_Cliente" />
+            <End Role="t_Orden" EntitySet="t_Orden" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_Orden_t_Usuario" Association="pedidoclickModel.FK_t_Orden_t_Usuario">
+            <End Role="t_Usuario" EntitySet="t_Usuario" />
+            <End Role="t_Orden" EntitySet="t_Orden" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_OrdenDetalle_t_Usuario" Association="pedidoclickModel.FK_t_OrdenDetalle_t_Usuario">
+            <End Role="t_Usuario" EntitySet="t_Usuario" />
+            <End Role="t_OrdenDetalle" EntitySet="t_OrdenDetalle" />
+          </AssociationSet>
+          <EntitySet Name="t_Tienda" EntityType="pedidoclickModel.t_Tienda" />
+          <AssociationSet Name="FK_t_Orden_t_Tienda" Association="pedidoclickModel.FK_t_Orden_t_Tienda">
+            <End Role="t_Tienda" EntitySet="t_Tienda" />
+            <End Role="t_Orden" EntitySet="t_Orden" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_Producto_t_Tienda" Association="pedidoclickModel.FK_t_Producto_t_Tienda">
+            <End Role="t_Tienda" EntitySet="t_Tienda" />
+            <End Role="t_Producto" EntitySet="t_Producto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_Categoria_t_Tienda" Association="pedidoclickModel.FK_t_Categoria_t_Tienda">
+            <End Role="t_Tienda" EntitySet="t_Tienda" />
+            <End Role="t_Categoria" EntitySet="t_Categoria" />
+          </AssociationSet>
+          <EntitySet Name="t_CategoriaTienda" EntityType="pedidoclickModel.t_CategoriaTienda" />
+          <AssociationSet Name="FK_t_CategoriaTienda_t_Cliente" Association="pedidoclickModel.FK_t_CategoriaTienda_t_Cliente">
+            <End Role="t_Cliente" EntitySet="t_Cliente" />
+            <End Role="t_CategoriaTienda" EntitySet="t_CategoriaTienda" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_CategoriaTienda_t_Usuario" Association="pedidoclickModel.FK_t_CategoriaTienda_t_Usuario">
+            <End Role="t_Usuario" EntitySet="t_Usuario" />
+            <End Role="t_CategoriaTienda" EntitySet="t_CategoriaTienda" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_CategoriaTienda_t_Usuario1" Association="pedidoclickModel.FK_t_CategoriaTienda_t_Usuario1">
+            <End Role="t_Usuario" EntitySet="t_Usuario" />
+            <End Role="t_CategoriaTienda" EntitySet="t_CategoriaTienda" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_Tienda_t_CategoriaTienda" Association="pedidoclickModel.FK_t_Tienda_t_CategoriaTienda">
+            <End Role="t_CategoriaTienda" EntitySet="t_CategoriaTienda" />
+            <End Role="t_Tienda" EntitySet="t_Tienda" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="t_Categoria">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdCliente" Type="Int32" />
+          <Property Name="Categoria" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="IdUsuarioCreo" Type="Int32" />
+          <Property Name="FechaCreo" Type="DateTime" Precision="3" />
+          <Property Name="IdUsuarioBorro" Type="Int32" />
+          <Property Name="Borrado" Type="Boolean" />
+          <Property Name="FechaBorrado" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="t_Cliente" Relationship="pedidoclickModel.FK_t_Categoria_t_Cliente" FromRole="t_Categoria" ToRole="t_Cliente" />
+          <NavigationProperty Name="t_Usuario" Relationship="pedidoclickModel.FK_t_Categoria_t_Usuario" FromRole="t_Categoria" ToRole="t_Usuario" />
+          <NavigationProperty Name="t_Usuario1" Relationship="pedidoclickModel.FK_t_Categoria_t_Usuario1" FromRole="t_Categoria" ToRole="t_Usuario" />
+          <NavigationProperty Name="t_Producto" Relationship="pedidoclickModel.FK_t_Producto_t_Categoria" FromRole="t_Categoria" ToRole="t_Producto" />
+          <Property Name="Imagen" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IdTienda" Type="Int32" />
+          <NavigationProperty Name="t_Tienda" Relationship="pedidoclickModel.FK_t_Categoria_t_Tienda" FromRole="t_Categoria" ToRole="t_Tienda" />
+        </EntityType>
+        <EntityType Name="t_Cliente">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Logo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ValidoHasta" Type="DateTime" Precision="0" />
+          <Property Name="Valido" Type="Boolean" />
+          <Property Name="Borrado" Type="Boolean" />
+          <NavigationProperty Name="t_Categoria" Relationship="pedidoclickModel.FK_t_Categoria_t_Cliente" FromRole="t_Cliente" ToRole="t_Categoria" />
+          <NavigationProperty Name="t_Usuario" Relationship="pedidoclickModel.FK_t_Usuario_t_Cliente" FromRole="t_Cliente" ToRole="t_Usuario" />
+          <NavigationProperty Name="t_Orden" Relationship="pedidoclickModel.FK_t_Orden_t_Cliente" FromRole="t_Cliente" ToRole="t_Orden" />
+          <NavigationProperty Name="t_CategoriaTienda" Relationship="pedidoclickModel.FK_t_CategoriaTienda_t_Cliente" FromRole="t_Cliente" ToRole="t_CategoriaTienda" />
+        </EntityType>
+        <EntityType Name="t_Producto">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdCategoria" Type="Int32" />
+          <Property Name="Producto" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Precio" Type="Decimal" Precision="16" Scale="4" />
+          <Property Name="Imagen" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="FechaCreo" Type="DateTime" Precision="3" />
+          <Property Name="IdUsuarioCreo" Type="Int32" />
+          <Property Name="FechaBorro" Type="DateTime" Precision="3" />
+          <Property Name="IdUsuarioBorro" Type="Int32" />
+          <Property Name="Borrado" Type="Boolean" />
+          <NavigationProperty Name="t_Categoria" Relationship="pedidoclickModel.FK_t_Producto_t_Categoria" FromRole="t_Producto" ToRole="t_Categoria" />
+          <NavigationProperty Name="t_Usuario" Relationship="pedidoclickModel.FK_t_Producto_t_Usuario" FromRole="t_Producto" ToRole="t_Usuario" />
+          <NavigationProperty Name="t_Usuario1" Relationship="pedidoclickModel.FK_t_Producto_t_Usuario1" FromRole="t_Producto" ToRole="t_Usuario" />
+          <Property Name="Activo" Type="Boolean" />
+          <NavigationProperty Name="t_OrdenDetalle" Relationship="pedidoclickModel.FK_t_OrdenDetalle_t_Producto" FromRole="t_Producto" ToRole="t_OrdenDetalle" />
+          <Property Name="IdTienda" Type="Int32" />
+          <NavigationProperty Name="t_Tienda" Relationship="pedidoclickModel.FK_t_Producto_t_Tienda" FromRole="t_Producto" ToRole="t_Tienda" />
+          <Property Name="Costo" Type="Decimal" Precision="16" Scale="4" />
+        </EntityType>
+        <EntityType Name="t_Rol">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Rol" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Borrado" Type="Boolean" />
+          <NavigationProperty Name="t_Usuario" Relationship="pedidoclickModel.FK_t_Usuario_t_Rol" FromRole="t_Rol" ToRole="t_Usuario" />
+        </EntityType>
+        <EntityType Name="t_Sesion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="FechaCreo" Type="DateTime" Precision="3" />
+          <Property Name="FechaExpira" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="t_Usuario" Relationship="pedidoclickModel.FK_t_Sesion_t_Usuario" FromRole="t_Sesion" ToRole="t_Usuario" />
+        </EntityType>
+        <EntityType Name="t_Usuario">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClienteId" Type="Int32" />
+          <Property Name="RolId" Type="Int32" />
+          <Property Name="Nombre" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Apellido" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Usuario" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Correo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CreadoFecha" Type="DateTime" Precision="3" />
+          <Property Name="Borrado" Type="Boolean" />
+          <Property Name="BorradoFecha" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="t_Categoria" Relationship="pedidoclickModel.FK_t_Categoria_t_Usuario" FromRole="t_Usuario" ToRole="t_Categoria" />
+          <NavigationProperty Name="t_Categoria1" Relationship="pedidoclickModel.FK_t_Categoria_t_Usuario1" FromRole="t_Usuario" ToRole="t_Categoria" />
+          <NavigationProperty Name="t_Cliente" Relationship="pedidoclickModel.FK_t_Usuario_t_Cliente" FromRole="t_Usuario" ToRole="t_Cliente" />
+          <NavigationProperty Name="t_Producto" Relationship="pedidoclickModel.FK_t_Producto_t_Usuario" FromRole="t_Usuario" ToRole="t_Producto" />
+          <NavigationProperty Name="t_Producto1" Relationship="pedidoclickModel.FK_t_Producto_t_Usuario1" FromRole="t_Usuario" ToRole="t_Producto" />
+          <NavigationProperty Name="t_Rol" Relationship="pedidoclickModel.FK_t_Usuario_t_Rol" FromRole="t_Usuario" ToRole="t_Rol" />
+          <NavigationProperty Name="t_Sesion" Relationship="pedidoclickModel.FK_t_Sesion_t_Usuario" FromRole="t_Usuario" ToRole="t_Sesion" />
+          <Property Name="Contrasena" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="t_Orden" Relationship="pedidoclickModel.FK_t_Orden_t_Usuario" FromRole="t_Usuario" ToRole="t_Orden" />
+          <NavigationProperty Name="t_OrdenDetalle" Relationship="pedidoclickModel.FK_t_OrdenDetalle_t_Usuario" FromRole="t_Usuario" ToRole="t_OrdenDetalle" />
+          <NavigationProperty Name="t_CategoriaTienda" Relationship="pedidoclickModel.FK_t_CategoriaTienda_t_Usuario" FromRole="t_Usuario" ToRole="t_CategoriaTienda" />
+          <NavigationProperty Name="t_CategoriaTienda1" Relationship="pedidoclickModel.FK_t_CategoriaTienda_t_Usuario1" FromRole="t_Usuario" ToRole="t_CategoriaTienda" />
+        </EntityType>
+        <Association Name="FK_t_Categoria_t_Cliente">
+          <End Type="pedidoclickModel.t_Cliente" Role="t_Cliente" Multiplicity="0..1" />
+          <End Type="pedidoclickModel.t_Categoria" Role="t_Categoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_Cliente">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="t_Categoria">
+              <PropertyRef Name="IdCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_Categoria_t_Usuario">
+          <End Type="pedidoclickModel.t_Usuario" Role="t_Usuario" Multiplicity="0..1" />
+          <End Type="pedidoclickModel.t_Categoria" Role="t_Categoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_Usuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="t_Categoria">
+              <PropertyRef Name="IdUsuarioCreo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_Categoria_t_Usuario1">
+          <End Type="pedidoclickModel.t_Usuario" Role="t_Usuario" Multiplicity="0..1" />
+          <End Type="pedidoclickModel.t_Categoria" Role="t_Categoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_Usuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="t_Categoria">
+              <PropertyRef Name="IdUsuarioBorro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_Producto_t_Categoria">
+          <End Type="pedidoclickModel.t_Categoria" Role="t_Categoria" Multiplicity="0..1" />
+          <End Type="pedidoclickModel.t_Producto" Role="t_Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_Categoria">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="t_Producto">
+              <PropertyRef Name="IdCategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_Usuario_t_Cliente">
+          <End Type="pedidoclickModel.t_Cliente" Role="t_Cliente" Multiplicity="0..1" />
+          <End Type="pedidoclickModel.t_Usuario" Role="t_Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_Cliente">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="t_Usuario">
+              <PropertyRef Name="ClienteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_Producto_t_Usuario">
+          <End Type="pedidoclickModel.t_Usuario" Role="t_Usuario" Multiplicity="0..1" />
+          <End Type="pedidoclickModel.t_Producto" Role="t_Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_Usuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="t_Producto">
+              <PropertyRef Name="IdUsuarioCreo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_Producto_t_Usuario1">
+          <End Type="pedidoclickModel.t_Usuario" Role="t_Usuario" Multiplicity="0..1" />
+          <End Type="pedidoclickModel.t_Producto" Role="t_Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_Usuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="t_Producto">
+              <PropertyRef Name="IdUsuarioBorro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_Usuario_t_Rol">
+          <End Type="pedidoclickModel.t_Rol" Role="t_Rol" Multiplicity="0..1" />
+          <End Type="pedidoclickModel.t_Usuario" Role="t_Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_Rol">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="t_Usuario">
+              <PropertyRef Name="RolId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_Sesion_t_Usuario">
+          <End Type="pedidoclickModel.t_Usuario" Role="t_Usuario" Multiplicity="0..1" />
+          <End Type="pedidoclickModel.t_Sesion" Role="t_Sesion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_Usuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="t_Sesion">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="SP_Categoria_Lista_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Categoria" Nullable="true" MaxLength="255" />
+          <Property Type="DateTime" Name="FechaCreo" Nullable="true" Precision="23" />
+        </ComplexType>
+        <EntityType Name="t_Orden">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdOrdenEstado" Type="Int32" />
+          <Property Name="Nombre" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Telefono" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CorreoElectronico" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Identidad" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Calle" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Avenida" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Colonia" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Ciudad" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Comentario" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="t_OrdenEstado" Relationship="pedidoclickModel.FK_t_Orden_t_OrdenEstado" FromRole="t_Orden" ToRole="t_OrdenEstado" />
+          <NavigationProperty Name="t_OrdenDetalle" Relationship="pedidoclickModel.FK_t_OrdenDetalle_t_Orden" FromRole="t_Orden" ToRole="t_OrdenDetalle" />
+          <Property Name="FechaCreo" Type="DateTime" Precision="3" />
+          <Property Name="IdCliente" Type="Int32" />
+          <NavigationProperty Name="t_Cliente" Relationship="pedidoclickModel.FK_t_Orden_t_Cliente" FromRole="t_Orden" ToRole="t_Cliente" />
+          <Property Name="IdAsignado" Type="Int32" />
+          <NavigationProperty Name="t_Usuario" Relationship="pedidoclickModel.FK_t_Orden_t_Usuario" FromRole="t_Orden" ToRole="t_Usuario" />
+          <Property Name="IdTienda" Type="Int32" />
+          <Property Name="Lat" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Long" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="t_Tienda" Relationship="pedidoclickModel.FK_t_Orden_t_Tienda" FromRole="t_Orden" ToRole="t_Tienda" />
+          <Property Name="IdZona" Type="Int32" />
+        </EntityType>
+        <EntityType Name="t_OrdenDetalle">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdOrden" Type="Int32" />
+          <Property Name="IdProducto" Type="Int32" />
+          <Property Name="Cantidad" Type="Int32" />
+          <Property Name="Precio" Type="Decimal" Precision="16" Scale="4" />
+          <Property Name="FechaCreo" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="t_Orden" Relationship="pedidoclickModel.FK_t_OrdenDetalle_t_Orden" FromRole="t_OrdenDetalle" ToRole="t_Orden" />
+          <NavigationProperty Name="t_Producto" Relationship="pedidoclickModel.FK_t_OrdenDetalle_t_Producto" FromRole="t_OrdenDetalle" ToRole="t_Producto" />
+          <Property Name="FechaBorro" Type="DateTime" Precision="3" />
+          <Property Name="IdUsuarioBorro" Type="Int32" />
+          <Property Name="Borrado" Type="Boolean" />
+          <NavigationProperty Name="t_Usuario" Relationship="pedidoclickModel.FK_t_OrdenDetalle_t_Usuario" FromRole="t_OrdenDetalle" ToRole="t_Usuario" />
+        </EntityType>
+        <EntityType Name="t_OrdenEstado">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Estado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FechaCreo" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="t_Orden" Relationship="pedidoclickModel.FK_t_Orden_t_OrdenEstado" FromRole="t_OrdenEstado" ToRole="t_Orden" />
+        </EntityType>
+        <Association Name="FK_t_Orden_t_OrdenEstado">
+          <End Type="pedidoclickModel.t_OrdenEstado" Role="t_OrdenEstado" Multiplicity="0..1" />
+          <End Type="pedidoclickModel.t_Orden" Role="t_Orden" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_OrdenEstado">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="t_Orden">
+              <PropertyRef Name="IdOrdenEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_OrdenDetalle_t_Orden">
+          <End Type="pedidoclickModel.t_Orden" Role="t_Orden" Multiplicity="0..1" />
+          <End Type="pedidoclickModel.t_OrdenDetalle" Role="t_OrdenDetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_Orden">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="t_OrdenDetalle">
+              <PropertyRef Name="IdOrden" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_OrdenDetalle_t_Producto">
+          <End Type="pedidoclickModel.t_Producto" Role="t_Producto" Multiplicity="0..1" />
+          <End Type="pedidoclickModel.t_OrdenDetalle" Role="t_OrdenDetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_Producto">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="t_OrdenDetalle">
+              <PropertyRef Name="IdProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="SP_Categoria_List_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Categoria" Nullable="true" MaxLength="255" />
+          <Property Type="DateTime" Name="FechaCreo" Nullable="true" Precision="23" />
+        </ComplexType>
+        <Association Name="FK_t_Orden_t_Cliente">
+          <End Type="pedidoclickModel.t_Cliente" Role="t_Cliente" Multiplicity="0..1" />
+          <End Type="pedidoclickModel.t_Orden" Role="t_Orden" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_Cliente">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="t_Orden">
+              <PropertyRef Name="IdCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_Orden_t_Usuario">
+          <End Type="pedidoclickModel.t_Usuario" Role="t_Usuario" Multiplicity="0..1" />
+          <End Type="pedidoclickModel.t_Orden" Role="t_Orden" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_Usuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="t_Orden">
+              <PropertyRef Name="IdAsignado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_OrdenDetalle_t_Usuario">
+          <End Type="pedidoclickModel.t_Usuario" Role="t_Usuario" Multiplicity="0..1" />
+          <End Type="pedidoclickModel.t_OrdenDetalle" Role="t_OrdenDetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_Usuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="t_OrdenDetalle">
+              <PropertyRef Name="IdUsuarioBorro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="t_Tienda">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdCliente" Type="Int32" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Logo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Banner" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Borrado" Type="Boolean" />
+          <NavigationProperty Name="t_Orden" Relationship="pedidoclickModel.FK_t_Orden_t_Tienda" FromRole="t_Tienda" ToRole="t_Orden" />
+          <NavigationProperty Name="t_Producto" Relationship="pedidoclickModel.FK_t_Producto_t_Tienda" FromRole="t_Tienda" ToRole="t_Producto" />
+          <Property Name="Observaciones" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Paginaweb" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="t_Categoria" Relationship="pedidoclickModel.FK_t_Categoria_t_Tienda" FromRole="t_Tienda" ToRole="t_Categoria" />
+          <Property Name="IdCategoriaTienda" Type="Int32" />
+          <NavigationProperty Name="t_CategoriaTienda" Relationship="pedidoclickModel.FK_t_Tienda_t_CategoriaTienda" FromRole="t_Tienda" ToRole="t_CategoriaTienda" />
+        </EntityType>
+        <Association Name="FK_t_Orden_t_Tienda">
+          <End Type="pedidoclickModel.t_Tienda" Role="t_Tienda" Multiplicity="0..1" />
+          <End Type="pedidoclickModel.t_Orden" Role="t_Orden" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_Tienda">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="t_Orden">
+              <PropertyRef Name="IdTienda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_Producto_t_Tienda">
+          <End Type="pedidoclickModel.t_Tienda" Role="t_Tienda" Multiplicity="0..1" />
+          <End Type="pedidoclickModel.t_Producto" Role="t_Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_Tienda">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="t_Producto">
+              <PropertyRef Name="IdTienda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_Categoria_t_Tienda">
+          <End Type="pedidoclickModel.t_Tienda" Role="t_Tienda" Multiplicity="0..1" />
+          <End Type="pedidoclickModel.t_Categoria" Role="t_Categoria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_Tienda">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="t_Categoria">
+              <PropertyRef Name="IdTienda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="t_CategoriaTienda">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdCliente" Type="Int32" />
+          <Property Name="CategoriaTienda" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Activo" Type="Boolean" />
+          <Property Name="Imagen" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="FechaCreo" Type="DateTime" Precision="3" />
+          <Property Name="IdUsuarioCreo" Type="Int32" />
+          <Property Name="FechaBorro" Type="DateTime" Precision="3" />
+          <Property Name="IdUsuarioBorro" Type="Int32" />
+          <Property Name="Borrado" Type="Boolean" />
+          <NavigationProperty Name="t_Cliente" Relationship="pedidoclickModel.FK_t_CategoriaTienda_t_Cliente" FromRole="t_CategoriaTienda" ToRole="t_Cliente" />
+          <NavigationProperty Name="t_Usuario" Relationship="pedidoclickModel.FK_t_CategoriaTienda_t_Usuario" FromRole="t_CategoriaTienda" ToRole="t_Usuario" />
+          <NavigationProperty Name="t_Usuario1" Relationship="pedidoclickModel.FK_t_CategoriaTienda_t_Usuario1" FromRole="t_CategoriaTienda" ToRole="t_Usuario" />
+          <NavigationProperty Name="t_Tienda" Relationship="pedidoclickModel.FK_t_Tienda_t_CategoriaTienda" FromRole="t_CategoriaTienda" ToRole="t_Tienda" />
+        </EntityType>
+        <Association Name="FK_t_CategoriaTienda_t_Cliente">
+          <End Type="pedidoclickModel.t_Cliente" Role="t_Cliente" Multiplicity="0..1" />
+          <End Type="pedidoclickModel.t_CategoriaTienda" Role="t_CategoriaTienda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_Cliente">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="t_CategoriaTienda">
+              <PropertyRef Name="IdCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_CategoriaTienda_t_Usuario">
+          <End Type="pedidoclickModel.t_Usuario" Role="t_Usuario" Multiplicity="0..1" />
+          <End Type="pedidoclickModel.t_CategoriaTienda" Role="t_CategoriaTienda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_Usuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="t_CategoriaTienda">
+              <PropertyRef Name="IdUsuarioCreo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_CategoriaTienda_t_Usuario1">
+          <End Type="pedidoclickModel.t_Usuario" Role="t_Usuario" Multiplicity="0..1" />
+          <End Type="pedidoclickModel.t_CategoriaTienda" Role="t_CategoriaTienda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_Usuario">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="t_CategoriaTienda">
+              <PropertyRef Name="IdUsuarioBorro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_Tienda_t_CategoriaTienda">
+          <End Type="pedidoclickModel.t_CategoriaTienda" Role="t_CategoriaTienda" Multiplicity="0..1" />
+          <End Type="pedidoclickModel.t_Tienda" Role="t_Tienda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_CategoriaTienda">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="t_Tienda">
+              <PropertyRef Name="IdCategoriaTienda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="pedidoclickModelStoreContainer" CdmEntityContainer="pedidoclick">
+          <EntitySetMapping Name="t_Mensajes">
+            <EntityTypeMapping TypeName="pedidoclickModel.t_Mensajes">
+              <MappingFragment StoreEntitySet="t_Mensajes">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Empresa" ColumnName="Empresa" />
+                <ScalarProperty Name="Mensaje" ColumnName="Mensaje" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_Categoria">
+            <EntityTypeMapping TypeName="pedidoclickModel.t_Categoria">
+              <MappingFragment StoreEntitySet="t_Categoria">
+                <ScalarProperty Name="IdTienda" ColumnName="IdTienda" />
+                <ScalarProperty Name="Imagen" ColumnName="Imagen" />
+                <ScalarProperty Name="FechaBorrado" ColumnName="FechaBorrado" />
+                <ScalarProperty Name="Borrado" ColumnName="Borrado" />
+                <ScalarProperty Name="IdUsuarioBorro" ColumnName="IdUsuarioBorro" />
+                <ScalarProperty Name="FechaCreo" ColumnName="FechaCreo" />
+                <ScalarProperty Name="IdUsuarioCreo" ColumnName="IdUsuarioCreo" />
+                <ScalarProperty Name="Categoria" ColumnName="Categoria" />
+                <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_Cliente">
+            <EntityTypeMapping TypeName="pedidoclickModel.t_Cliente">
+              <MappingFragment StoreEntitySet="t_Cliente">
+                <ScalarProperty Name="Borrado" ColumnName="Borrado" />
+                <ScalarProperty Name="Valido" ColumnName="Valido" />
+                <ScalarProperty Name="ValidoHasta" ColumnName="ValidoHasta" />
+                <ScalarProperty Name="Logo" ColumnName="Logo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_Producto">
+            <EntityTypeMapping TypeName="pedidoclickModel.t_Producto">
+              <MappingFragment StoreEntitySet="t_Producto">
+                <ScalarProperty Name="Costo" ColumnName="Costo" />
+                <ScalarProperty Name="IdTienda" ColumnName="IdTienda" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="Borrado" ColumnName="Borrado" />
+                <ScalarProperty Name="IdUsuarioBorro" ColumnName="IdUsuarioBorro" />
+                <ScalarProperty Name="FechaBorro" ColumnName="FechaBorro" />
+                <ScalarProperty Name="IdUsuarioCreo" ColumnName="IdUsuarioCreo" />
+                <ScalarProperty Name="FechaCreo" ColumnName="FechaCreo" />
+                <ScalarProperty Name="Imagen" ColumnName="Imagen" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Producto" ColumnName="Producto" />
+                <ScalarProperty Name="IdCategoria" ColumnName="IdCategoria" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_Rol">
+            <EntityTypeMapping TypeName="pedidoclickModel.t_Rol">
+              <MappingFragment StoreEntitySet="t_Rol">
+                <ScalarProperty Name="Borrado" ColumnName="Borrado" />
+                <ScalarProperty Name="Rol" ColumnName="Rol" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_Sesion">
+            <EntityTypeMapping TypeName="pedidoclickModel.t_Sesion">
+              <MappingFragment StoreEntitySet="t_Sesion">
+                <ScalarProperty Name="FechaExpira" ColumnName="FechaExpira" />
+                <ScalarProperty Name="FechaCreo" ColumnName="FechaCreo" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_Usuario">
+            <EntityTypeMapping TypeName="pedidoclickModel.t_Usuario">
+              <MappingFragment StoreEntitySet="t_Usuario">
+                <ScalarProperty Name="Contrasena" ColumnName="Contrasena" />
+                <ScalarProperty Name="BorradoFecha" ColumnName="BorradoFecha" />
+                <ScalarProperty Name="Borrado" ColumnName="Borrado" />
+                <ScalarProperty Name="CreadoFecha" ColumnName="CreadoFecha" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="RolId" ColumnName="RolId" />
+                <ScalarProperty Name="ClienteId" ColumnName="ClienteId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SP_Categoria_Crear" FunctionName="pedidoclickModel.Store.SP_Categoria_Crear" />
+          <EntitySetMapping Name="t_Orden">
+            <EntityTypeMapping TypeName="pedidoclickModel.t_Orden">
+              <MappingFragment StoreEntitySet="t_Orden">
+                <ScalarProperty Name="IdZona" ColumnName="IdZona" />
+                <ScalarProperty Name="Long" ColumnName="Long" />
+                <ScalarProperty Name="Lat" ColumnName="Lat" />
+                <ScalarProperty Name="IdTienda" ColumnName="IdTienda" />
+                <ScalarProperty Name="IdAsignado" ColumnName="IdAsignado" />
+                <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+                <ScalarProperty Name="FechaCreo" ColumnName="FechaCreo" />
+                <ScalarProperty Name="Comentario" ColumnName="Comentario" />
+                <ScalarProperty Name="Ciudad" ColumnName="Ciudad" />
+                <ScalarProperty Name="Colonia" ColumnName="Colonia" />
+                <ScalarProperty Name="Avenida" ColumnName="Avenida" />
+                <ScalarProperty Name="Calle" ColumnName="Calle" />
+                <ScalarProperty Name="Identidad" ColumnName="Identidad" />
+                <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IdOrdenEstado" ColumnName="IdOrdenEstado" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_OrdenDetalle">
+            <EntityTypeMapping TypeName="pedidoclickModel.t_OrdenDetalle">
+              <MappingFragment StoreEntitySet="t_OrdenDetalle">
+                <ScalarProperty Name="Borrado" ColumnName="Borrado" />
+                <ScalarProperty Name="IdUsuarioBorro" ColumnName="IdUsuarioBorro" />
+                <ScalarProperty Name="FechaBorro" ColumnName="FechaBorro" />
+                <ScalarProperty Name="FechaCreo" ColumnName="FechaCreo" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="IdProducto" ColumnName="IdProducto" />
+                <ScalarProperty Name="IdOrden" ColumnName="IdOrden" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_OrdenEstado">
+            <EntityTypeMapping TypeName="pedidoclickModel.t_OrdenEstado">
+              <MappingFragment StoreEntitySet="t_OrdenEstado">
+                <ScalarProperty Name="FechaCreo" ColumnName="FechaCreo" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SP_Categoria_List" FunctionName="pedidoclickModel.Store.SP_Categoria_List">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="pedidoclickModel.SP_Categoria_List_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Categoria" ColumnName="Categoria" />
+                <ScalarProperty Name="FechaCreo" ColumnName="FechaCreo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="t_Tienda">
+            <EntityTypeMapping TypeName="pedidoclickModel.t_Tienda">
+              <MappingFragment StoreEntitySet="t_Tienda">
+                <ScalarProperty Name="IdCategoriaTienda" ColumnName="IdCategoriaTienda" />
+                <ScalarProperty Name="Paginaweb" ColumnName="Paginaweb" />
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+                <ScalarProperty Name="Borrado" ColumnName="Borrado" />
+                <ScalarProperty Name="Banner" ColumnName="Banner" />
+                <ScalarProperty Name="Logo" ColumnName="Logo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_CategoriaTienda">
+            <EntityTypeMapping TypeName="pedidoclickModel.t_CategoriaTienda">
+              <MappingFragment StoreEntitySet="t_CategoriaTienda">
+                <ScalarProperty Name="Borrado" ColumnName="Borrado" />
+                <ScalarProperty Name="IdUsuarioBorro" ColumnName="IdUsuarioBorro" />
+                <ScalarProperty Name="FechaBorro" ColumnName="FechaBorro" />
+                <ScalarProperty Name="IdUsuarioCreo" ColumnName="IdUsuarioCreo" />
+                <ScalarProperty Name="FechaCreo" ColumnName="FechaCreo" />
+                <ScalarProperty Name="Imagen" ColumnName="Imagen" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="CategoriaTienda" ColumnName="CategoriaTienda" />
+                <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

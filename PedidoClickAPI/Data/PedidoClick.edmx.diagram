@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ebc4c70af2494c4f8395865f4ff45935" Name="Diagram1" ZoomLevel="64">
+        <EntityTypeShape EntityType="pedidoclickModel.t_Mensajes" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="pedidoclickModel.t_Categoria" Width="1.5" PointX="7.875" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="pedidoclickModel.t_Cliente" Width="1.5" PointX="3.375" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="pedidoclickModel.t_Producto" Width="1.5" PointX="10.25" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="pedidoclickModel.t_Rol" Width="1.5" PointX="3.375" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="pedidoclickModel.t_Sesion" Width="1.5" PointX="7.875" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="pedidoclickModel.t_Usuario" Width="1.5" PointX="5.625" PointY="3.5" IsExpanded="true" />
+        <AssociationConnector Association="pedidoclickModel.FK_t_Categoria_t_Cliente" />
+        <AssociationConnector Association="pedidoclickModel.FK_t_Categoria_t_Usuario" />
+        <AssociationConnector Association="pedidoclickModel.FK_t_Categoria_t_Usuario1" />
+        <AssociationConnector Association="pedidoclickModel.FK_t_Producto_t_Categoria" />
+        <AssociationConnector Association="pedidoclickModel.FK_t_Usuario_t_Cliente" />
+        <AssociationConnector Association="pedidoclickModel.FK_t_Producto_t_Usuario" />
+        <AssociationConnector Association="pedidoclickModel.FK_t_Producto_t_Usuario1" />
+        <AssociationConnector Association="pedidoclickModel.FK_t_Usuario_t_Rol" />
+        <AssociationConnector Association="pedidoclickModel.FK_t_Sesion_t_Usuario" />
+        <EntityTypeShape EntityType="pedidoclickModel.t_Orden" Width="1.5" PointX="12.125" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="pedidoclickModel.t_OrdenDetalle" Width="1.5" PointX="14.5" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="pedidoclickModel.t_OrdenEstado" Width="1.5" PointX="7.375" PointY="1.375" IsExpanded="true" />
+        <AssociationConnector Association="pedidoclickModel.FK_t_Orden_t_OrdenEstado" />
+        <AssociationConnector Association="pedidoclickModel.FK_t_OrdenDetalle_t_Orden" />
+        <AssociationConnector Association="pedidoclickModel.FK_t_OrdenDetalle_t_Producto" />
+        <AssociationConnector Association="pedidoclickModel.FK_t_Orden_t_Cliente" />
+        <AssociationConnector Association="pedidoclickModel.FK_t_Orden_t_Usuario" />
+        <AssociationConnector Association="pedidoclickModel.FK_t_OrdenDetalle_t_Usuario" />
+        <EntityTypeShape EntityType="pedidoclickModel.t_Tienda" Width="1.5" PointX="0.75" PointY="5.25" />
+        <AssociationConnector Association="pedidoclickModel.FK_t_Orden_t_Tienda" />
+        <AssociationConnector Association="pedidoclickModel.FK_t_Producto_t_Tienda" />
+        <AssociationConnector Association="pedidoclickModel.FK_t_Categoria_t_Tienda" />
+        <EntityTypeShape EntityType="pedidoclickModel.t_CategoriaTienda" Width="1.5" PointX="9.875" PointY="0.75" />
+        <AssociationConnector Association="pedidoclickModel.FK_t_CategoriaTienda_t_Cliente" />
+        <AssociationConnector Association="pedidoclickModel.FK_t_CategoriaTienda_t_Usuario" />
+        <AssociationConnector Association="pedidoclickModel.FK_t_CategoriaTienda_t_Usuario1" />
+        <AssociationConnector Association="pedidoclickModel.FK_t_Tienda_t_CategoriaTienda" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
